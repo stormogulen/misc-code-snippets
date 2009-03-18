@@ -78,8 +78,62 @@ struct API_ENTRY Vector2
         if (mathaux::is_zero(y))
             y = 0.0;
     }
+
+    //! Set.
+    INLINE void set(T tx, T ty) { x = tx; y = ty; }
+
+    //! Set to zero.
+    INLINE void zero() { x = y = 0.0; }
+
+    //! Normalize.
+    void normalize();
+
+    //! Negate operator.
+    Vector2<T> operator-() const;
+
+    //! Addition.
+    Vector2<T> operator+(const Vector2<T>& rhs) const;
+
+    //! Addition.
+    Vector2<T>& operator+=(const Vector2<T>& rhs);
+
+    //! Subtraction.
+    Vector2<T> operator-(const Vector2<T>& rhs) const;
+
+    //! Subtraction.
+    Vector2<T>& operator-=(const Vector2<T>& rhs);
+
+    //! Scalar multiplication.
+    Vector2<T> operator*(T scalar);
+
+    //! Scalar multiplication.
+    Vector2<T>& operator*=(T scalar);
+
+    //! Scalar division.
+    Vector2<T> operator/(T scalar);
+
+    //! Scalar division.
+    Vector2<T>& operator/=(T scalar);
+
+    //! Dot product.
+    T dot(const Vector2<T>& v) const;
+
+    //! Perpendicular.
+    INLINE Vector2<T> perpendicular() const { return Vector2<T>(-y, x); }
+
+    //!
+    T perp_dot(const Vector2<T>& v) const;
 };
-    
+
+
+template <typename T>
+Vector2<T> operator*(T scalar, const Vector2<T>& rhs);
+
+template <typename T>
+T dot(const Vector2<T>& v1, const Vector2<T>& v2);
+
+template <typename T>
+T perp_dot(const Vector2<T>& v1, const Vector2<T>& v2);
 
 #endif // !__MATHLIB_VECTOR2_HPP_INCLUDED__
 
