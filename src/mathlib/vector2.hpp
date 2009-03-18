@@ -9,7 +9,9 @@
 #define __MATHLIB_VECTOR2_HPP_INCLUDED__
 
 #include "math_aux.hpp"
-#include "visibility.hpp"
+#include "../common/visibility.hpp"
+
+#define INLINE inline
 
 template <typename T>
 struct API_ENTRY Vector2
@@ -86,7 +88,18 @@ struct API_ENTRY Vector2
     INLINE void zero() { x = y = 0.0; }
 
     //! Normalize.
-    void normalize();
+    void normalize()
+    {
+        T length_sqr = x*x + y*y;
+        if (mathaux::is_zero(length_sqr))
+            zero();
+        else
+        {
+            T factor = mathaux::inv_sqrt(length_sqr);
+            x *= factor;
+            y *= factor;
+        }
+    }
 
     //! Negate operator.
     Vector2<T> operator-() const;

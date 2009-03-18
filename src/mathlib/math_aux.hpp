@@ -10,7 +10,7 @@
 
 //#include "visibility.hpp"
 #include <cmath>
-#include <boost/cstdint.hpp>
+//#include <boost/cstdint.hpp>
 
 namespace mathaux {
 
@@ -32,6 +32,10 @@ namespace mathaux {
 //#define TWOPI       6.28318530718f
 
 
+float inv_sqrt(float value)
+{
+    return 1.0f / sqrtf(value);
+}
 
 
 //! Calculates a raised to the power of n.
