@@ -19,6 +19,10 @@ class AutoDelete : boost::noncopyable
     T* ptr_;
 };
 
+
+//!
+
+
 #endif // !__SRC_AUTO_DELETE_HPP_INCLUDED__
 
 /* End of File */
