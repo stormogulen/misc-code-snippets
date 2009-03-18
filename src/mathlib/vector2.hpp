@@ -102,7 +102,7 @@ struct API_ENTRY Vector2
     }
 
     //! Negate operator.
-    Vector2<T> operator-() const;
+    Vector2<T> operator-() const { return Vector2<T>(-x, -y); }
 
     //! Addition.
     Vector2<T> operator+(const Vector2<T>& rhs) const;
