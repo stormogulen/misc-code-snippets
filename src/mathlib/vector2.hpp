@@ -9,8 +9,10 @@
 #define __MATHLIB_VECTOR2_HPP_INCLUDED__
 
 #include "math_aux.hpp"
-#include "../common/visibility.hpp"
+//#include "../common/visibility.hpp"
 
+
+#define API_ENTRY
 #define INLINE inline
 
 template <typename T>
@@ -18,7 +20,7 @@ struct API_ENTRY Vector2
 {
     union
     {
-        struct
+        __extension__ struct
         {
             T x;
             T y;
@@ -27,16 +29,31 @@ struct API_ENTRY Vector2
         T m[2];
     };
 
-    //! Default constructor.
+    //! Default constructor; does no initialization.
     Vector2() { }
 
-    //! Constructor.
+    //! Construct a 2-D vector from x and y elements.
     Vector2(T tx, T ty) : x(tx), y(ty) { }
 
     //! Destrcutor.
     ~Vector2() { }
 
+    //! Copy a 2-D vector.
+    Vector2(const Vector2<T>& rhs)
+    {
+        x = rhs.x;
+        y = rhs.y;
+
+        return *this;
+    }
+
+    //! Copy elements from a 2-D point into a 2-D vector.
+    //explicit Vector3(const Point3<T>& point);
+
+    //! Subscripting operator to set or get an element.
     INLINE T& operator[](unsigned int idx)       { return m[idx]; }
+
+    //! Subscripting operator to get an element.
     INLINE T  operator[](unsigned int idx) const { return m[idx]; }
 
     //! Vector length.
