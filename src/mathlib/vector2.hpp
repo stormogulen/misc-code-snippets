@@ -161,13 +161,19 @@ struct API_ENTRY Vector2
     Vector2<T>& operator/=(T scalar);
 
     //! Dot product (Euclidean inner product).
-    T dot(const Vector2<T>& v) const;
+    T dot(const Vector2<T>& v) const
+    {
+        return (x*v.x + y.*v.y);
+    }
 
     //! Perpendicular.
     INLINE Vector2<T> perpendicular() const { return Vector2<T>(-y, x); }
 
     //! Perpendicular dot product by self.
-    T perp_dot(const Vector2<T>& v) const;
+    T perp_dot(const Vector2<T>& v) const
+    {
+        return (x*v.y - y*v.x);
+    }
 };
 
 
@@ -177,15 +183,24 @@ struct API_ENTRY Vector2
 
 //! Scalar multiplication.
 template <typename T>
-Vector2<T> operator*(T scalar, const Vector2<T>& rhs);
+Vector2<T> operator*(T scalar, const Vector2<T>& rhs)
+{
+    return Vector2<T>(scalar*rhs.x, scalar*rhs.y);
+}
 
 //! Dot product.
 template <typename T>
-T dot(const Vector2<T>& v1, const Vector2<T>& v2);
+T dot(const Vector2<T>& v1, const Vector2<T>& v2)
+{
+    return (v1.x*v2.x + v1.y*v2.y);
+}
 
 //! Perpendicular dot product.
 template <typename T>
-T perp_dot(const Vector2<T>& v1, const Vector2<T>& v2);
+T perp_dot(const Vector2<T>& v1, const Vector2<T>& v2)
+{
+    return (v1.x*v2.y - v1.y*v2.x);
+}
 
 #endif // !__MATHLIB_VECTOR2_HPP_INCLUDED__
 
