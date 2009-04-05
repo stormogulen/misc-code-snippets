@@ -9,18 +9,19 @@
 #define __MATHLIB_VECTOR2_HPP_INCLUDED__
 
 #include "math_aux.hpp"
-//#include "../common/visibility.hpp"
+#include "common/visibility.hpp"
 
 
-#define API_ENTRY
+//#define API_ENTRY
 #define INLINE inline
+#define EXTENSION __extension__
 
 template <typename T>
 struct API_ENTRY Vector2
 {
     union
     {
-        __extension__ struct
+        EXTENSION struct
         {
             T x;
             T y;
@@ -43,8 +44,22 @@ struct API_ENTRY Vector2
     {
         x = rhs.x;
         y = rhs.y;
+    }
+
+    //! Assign one 2-D vector to another.
+    Vector2<T>& operator=(const Vector2<T>& rhs)
+    {
+        x = rhs.x;
+        y = rhs.y;
 
         return *this;
+    }
+
+    //! Set all elements of a 2-D vector to the same scalar value.
+    explicit Vector2(T scalar)
+    {
+        x = scalar;
+        y = scalar;
     }
 
     //! Copy elements from a 2-D point into a 2-D vector.
@@ -118,31 +133,31 @@ struct API_ENTRY Vector2
         }
     }
 
-    //! Negate operator.
+    //! Negate operator, negate all elements of a 2-D vector.
     Vector2<T> operator-() const { return Vector2<T>(-x, -y); }
 
-    //! Addition.
+    //! Addition, add two 2-D vectors.
     Vector2<T> operator+(const Vector2<T>& rhs) const;
 
-    //! Addition.
+    //! Addition, compound assignment and addition.
     Vector2<T>& operator+=(const Vector2<T>& rhs);
 
-    //! Subtraction.
+    //! Subtraction, subtract a 2-D vector from another 2-D vector.
     Vector2<T> operator-(const Vector2<T>& rhs) const;
 
-    //! Subtraction.
+    //! Subtraction, compound assignment and subtraction.
     Vector2<T>& operator-=(const Vector2<T>& rhs);
 
-    //! Scalar multiplication.
+    //! Scalar multiplication, multiply a 2-D vector by a scalar.
     Vector2<T> operator*(T scalar);
 
-    //! Scalar multiplication.
+    //! Scalar multiplication, compound assignment and multiplication.
     Vector2<T>& operator*=(T scalar);
 
-    //! Scalar division.
+    //! Scalar division, divide a 2-D vector by a scalar.
     Vector2<T> operator/(T scalar);
 
-    //! Scalar division.
+    //! Scalar division, compound assignment and division by scalar.
     Vector2<T>& operator/=(T scalar);
 
     //! Dot product.
@@ -151,10 +166,14 @@ struct API_ENTRY Vector2
     //! Perpendicular.
     INLINE Vector2<T> perpendicular() const { return Vector2<T>(-y, x); }
 
-    //!
+    //! 
     T perp_dot(const Vector2<T>& v) const;
 };
 
+
+//
+// Free functions form 2-D vectors.
+//
 
 template <typename T>
 Vector2<T> operator*(T scalar, const Vector2<T>& rhs);
