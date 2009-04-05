@@ -160,13 +160,13 @@ struct API_ENTRY Vector2
     //! Scalar division, compound assignment and division by scalar.
     Vector2<T>& operator/=(T scalar);
 
-    //! Dot product.
+    //! Dot product (Euclidean inner product).
     T dot(const Vector2<T>& v) const;
 
     //! Perpendicular.
     INLINE Vector2<T> perpendicular() const { return Vector2<T>(-y, x); }
 
-    //! 
+    //! Perpendicular dot product by self.
     T perp_dot(const Vector2<T>& v) const;
 };
 
@@ -175,12 +175,15 @@ struct API_ENTRY Vector2
 // Free functions form 2-D vectors.
 //
 
+//! Scalar multiplication.
 template <typename T>
 Vector2<T> operator*(T scalar, const Vector2<T>& rhs);
 
+//! Dot product.
 template <typename T>
 T dot(const Vector2<T>& v1, const Vector2<T>& v2);
 
+//! Perpendicular dot product.
 template <typename T>
 T perp_dot(const Vector2<T>& v1, const Vector2<T>& v2);
 
