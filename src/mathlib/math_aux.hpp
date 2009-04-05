@@ -8,9 +8,9 @@
 #ifndef __MATHLIB_MATH_AUX_HPP_INCLUDED__
 #define __MATHLIB_MATH_AUX_HPP_INCLUDED__
 
-//#include "visibility.hpp"
+#include "common/visibility.hpp"
 #include <cmath>
-//#include <boost/cstdint.hpp>
+#include <boost/cstdint.hpp>
 
 namespace mathaux {
 
@@ -20,18 +20,18 @@ namespace mathaux {
 #define ZERO_EPSILON   1.0E-6
 
 //! Pi.
-#define PI          3.1415926535897932384626433832795f
-//#define PI          3.14159265359f
+//#define PI          3.1415926535897932384626433832795f
+#define PI          3.14159265359f
 
 //! Half pi.
-#define HALF_PI     1.5707963267948966192313216916398f
-//#define HALF_PI     1.57079632679f
+//#define HALF_PI     1.5707963267948966192313216916398f
+#define HALF_PI     1.57079632679f
 
 //! Two pi.
 #define TWO_PI      2.0f*PI                      
 //#define TWOPI       6.28318530718f
 
-
+//! Inverted square root.
 float inv_sqrt(float value)
 {
     return 1.0f / sqrtf(value);
@@ -56,7 +56,7 @@ inline float int_power(float base, unsigned int n)
     return s;
 }
 
-
+//! Degrees per radians constant.
 #define DEGREES_PER_RADIAN  57.29577951f
 
 //! To degrees.
@@ -65,6 +65,7 @@ inline float to_degrees(float radians)
     return (radians * DEGREES_PER_RADIAN);
 }
 
+//! Radians per degree constant.
 #define RADIANS_PER_DEGREE  0.017453292f
 
 //! To radians.
