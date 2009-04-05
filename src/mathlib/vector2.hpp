@@ -137,28 +137,64 @@ struct API_ENTRY Vector2
     Vector2<T> operator-() const { return Vector2<T>(-x, -y); }
 
     //! Addition, add two 2-D vectors.
-    Vector2<T> operator+(const Vector2<T>& rhs) const;
+    Vector2<T> operator+(const Vector2<T>& rhs) const
+    {
+        return Vector2<T>(x+rhs.x, y+rhs.y);
+    }
 
     //! Addition, compound assignment and addition.
-    Vector2<T>& operator+=(const Vector2<T>& rhs);
+    Vector2<T>& operator+=(const Vector2<T>& rhs)
+    {
+        x += rhs.x;
+        y += rhs.y;
+
+        return *this;
+    }
 
     //! Subtraction, subtract a 2-D vector from another 2-D vector.
-    Vector2<T> operator-(const Vector2<T>& rhs) const;
+    Vector2<T> operator-(const Vector2<T>& rhs) const
+    {
+        return Vector2<T>(x-rhs.x, y-rhs.y);
+    }
 
     //! Subtraction, compound assignment and subtraction.
-    Vector2<T>& operator-=(const Vector2<T>& rhs);
+    Vector2<T>& operator-=(const Vector2<T>& rhs)
+    {
+        x -= rhs.x;
+        y -= rhs.y;
+
+        return *this;
+    }
 
     //! Scalar multiplication, multiply a 2-D vector by a scalar.
-    Vector2<T> operator*(T scalar);
+    Vector2<T> operator*(T scalar)
+    {
+        return Vector2<T>(scalar*x, scalar*y);
+    }
 
     //! Scalar multiplication, compound assignment and multiplication.
-    Vector2<T>& operator*=(T scalar);
+    Vector2<T>& operator*=(T scalar)
+    {
+        x *= scalar;
+        y *= scalar;
+
+        return *this;
+    }
 
     //! Scalar division, divide a 2-D vector by a scalar.
-    Vector2<T> operator/(T scalar);
+    Vector2<T> operator/(T scalar)
+    {
+        return Vector2<T>(x/scalar, y/scalar);
+    }
 
     //! Scalar division, compound assignment and division by scalar.
-    Vector2<T>& operator/=(T scalar);
+    Vector2<T>& operator/=(T scalar)
+    {
+        x /= scalar;
+        y /= scalar;
+
+        return *this;
+    }
 
     //! Dot product (Euclidean inner product).
     T dot(const Vector2<T>& v) const
