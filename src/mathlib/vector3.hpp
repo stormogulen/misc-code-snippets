@@ -65,10 +65,10 @@ struct API_ENTRY Vector3
     }
 
     //! Subscripting operator to set or get an element.
-    INLINE T& operator[](unsigned int idx)       { return m[i]; }
+    INLINE T& operator[](unsigned int idx)       { return m[idx]; }
 
     //! Subscripting operator to get an element.
-    INLINE T  operator[](unsigned int idx) const { return m[i]; }
+    INLINE T  operator[](unsigned int idx) const { return m[idx]; }
 
     //! Vector length.
     T length() const
@@ -83,22 +83,53 @@ struct API_ENTRY Vector3
     }
 
     //! Equality operator.
-    bool operator==(const Vector3<T>& rhs) const;
+    bool operator==(const Vector3<T>& rhs) const
+    {
+        if (mathaux::are_equal(rhs.x, x) &&
+            mathaux::are_equal(rhs.y, y) &&
+            mathaux::are_equal(rhs.z, z))
+            return true;
+
+        return false;
+    }
 
     //! Not equal operator.
-    bool operator!=(const Vector3<T>& rhs) const;
+    bool operator!=(const Vector3<T>& rhs) const
+    {
+        if (mathaux::are_equal(rhs.x, x) &&
+            mathaux::are_equal(rhs.y, y) &&
+            mathaux::are_equal(rhs.z, z))
+            return false;
 
-    //!
-    bool is_zero() const;
+        return true;
+    }
 
-    //!
-    bool is_unit() const;
+    //! Test for 'near-zero' values.
+    bool is_zero() const
+    {
+        return mathaux::is_zero(x*x + y*y + z*z);
+    }
 
-    //!
+    //! Check for unit vector.
+    bool is_unit() const
+    {
+        return mathaux::is_zero(1.0f - x*x - y*y - z*z);
+    }
+
+    //! Set elements.
     INLINE void set(T tx, T ty, T tz) { x = tx; y = ty; z = tz; }
 
-    //!
-    void clean();
+    //! Set elements close to zero equal to zero.
+    void clean()
+    {
+        if (mathaux::is_zero(x))
+            x = 0;
+        if (mathaux::is_zero(y))
+            y = 0;
+        if (mathaux::is_zero(z))
+            z = 0;
+    }
+        
 
     //!
     INLINE void zero() { x = y = z = 0; }
@@ -146,6 +177,7 @@ template <typename T>
 Vector3<T>& operator+=(Vector3<T>& self, const Vector3<T>& other);
 
 //!
+template <typename T>
 Vector3<T>& operator-=(Vector3<T>& self, const Vector3<T>& other);
 
 
