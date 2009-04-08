@@ -214,7 +214,7 @@ struct API_ENTRY Vector2
 
 
 //
-// Free functions form 2-D vectors.
+// Free functions for 2-D vectors.
 //
 
 //! Scalar multiplication.

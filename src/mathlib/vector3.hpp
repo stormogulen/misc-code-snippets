@@ -137,7 +137,7 @@ struct API_ENTRY Vector3
     //! Create a unit vector.
     void normalize()
     {
-        T length_sq = x*x + Y*y + z*z;
+        T length_sq = x*x + y*y + z*z;
         AC_ASSERT(length_sq != 0);
 
         if (mathaux::is_zero(length_sq))
@@ -169,9 +169,60 @@ struct API_ENTRY Vector3
         return Vector3<T>(-x, -y, -z);
     }
 
+    //! Scalar multiplication, multiply a 3-D vector by a scalar.
+    Vector3<T> operator*(T scalar)
+    {
+        return Vector3<T>(scalar*x, scalar*y, scalar*z);
+    }
+
+    //! Scalar multiplication, compound assignment and multiplication.
+    Vector3<T>& operator*=(T scalar)
+    {
+        x *= scalar;
+        y *= scalar;
+        z *= scalar;
+
+        return *this;
+    }
+
+    //! Scalar division, divide a 3-D vector by a scalar.
+    Vector3<T> operator/(T scalar)
+    {
+        return Vector3<T>(x/scalar, y/scalar, z/scalar);
+    }
+
+    //! Scalar division, compound assignment and division by scalar.
+    Vector3<T>& operator/=(T scalar)
+    {
+        x /= scalar;
+        y /= scalar;
+        z /= scalar;
+
+        return *this;
+    }
+
+    //! Dot product.
+    T dot(const Vector3<T>& v1, const Vector3<T>& v2)
+    {
+        return (v1.x*v2.x + v1.y*v2.y + v1.z*v2.z);
+    }
+
+    //! Cross product.
+    Vector3<T> cross(const Vector3<T>& other) const
+    {
+        return Vector3<T>(y*other.z - z*other.y,
+                          z*other.x - x*other.z,
+                          x*other.y - y*other.x);
+    }
+    
+
     
     
 };
+
+//
+// Free functions for 3-D vectors.
+//
 
 //! Point distance.
 template <typename T>
@@ -195,14 +246,50 @@ T distance_squared(const Vector3<T>& v1, const Vector3<T>& v2)
     return (x*x + y*y + z*z);
 }
 
-//!
+//! Add vector to self.
 template <typename T>
-Vector3<T>& operator+=(Vector3<T>& self, const Vector3<T>& other);
+Vector3<T>& operator+=(Vector3<T>& self, const Vector3<T>& other)
+{
+    self.x += other.x;
+    self.y += other.y;
+    self.z += other.z;
 
-//!
+    return self;
+}
+
+//! Subtract vector from self.
 template <typename T>
-Vector3<T>& operator-=(Vector3<T>& self, const Vector3<T>& other);
+Vector3<T>& operator-=(Vector3<T>& self, const Vector3<T>& other)
+{
+    self.x -= other.x;
+    self.y -= other.y;
+    self.z -= other.z;
 
+    return self;
+}
+
+//! Scalar multiplication.
+template <typename T>
+Vector3<T> operator*(T scalar, const Vector3<T>& other)
+{
+    return Vector3<T>(scalar*other.x, scalar*other.y, scalar*other.z);
+}
+
+//! Dot product.
+template <typename T>
+T dot(const Vector3<T>& v1, const Vector3<T>& v2)
+{
+    return (v1.x*v2.x + v1.y*v2.y + v1.z*v2.z);
+}
+
+//! Cross product.
+template <typename T>
+Vector3<T> cross(const Vector3<T>& v1, const Vector3<T>& v2)
+{
+    return Vector3<T>(v1.y*v2.z - v1.z*v2.y,
+                      v1.z*v2.x - v1.x*v2.z,
+                      v1.x*v2.y - v1.y*v2.x);
+}
 
 #endif // !__MATHLIB_VECTOR3_HPP_INCLUDED__
 
