@@ -131,20 +131,43 @@ struct API_ENTRY Vector3
     }
         
 
-    //!
+    //! Set all elements to zero.
     INLINE void zero() { x = y = z = 0; }
 
-    //!
-    void normalize();
+    //! Create a unit vector.
+    void normalize()
+    {
+        T length_sq = x*x + Y*y + z*z;
+        AC_ASSERT(length_sq != 0);
 
-    //!
-    Vector3<T> operator+(const Vector3<T>& rhs) const;
+        if (mathaux::is_zero(length_sq))
+            zero();
+        else
+        {
+            T factor = mathaux::inv_sqrt(length_sq);
+            x *= factor;
+            y *= factor;
+            z *= factor;
+        }
+    }
 
-    //!
-    Vector3<T>& operator-(const Vector3<T>& rhs) const;
+    //! Add vector to self.
+    Vector3<T> operator+(const Vector3<T>& rhs) const
+    {
+        return Vector3<T>(x + rhs.x, y + rhs.y, z + rhs.z);
+    }
 
-    //!
-    Vector3<T> operator-() const;
+    //! Subtract vector from self.
+    Vector3<T>& operator-(const Vector3<T>& rhs) const
+    {
+        return Vector3<T>(x-rhs.x, y-rhs.y, z-rhs.z);
+    }
+
+    //! Negate vector.
+    Vector3<T> operator-() const
+    {
+        return Vector3<T>(-x, -y, -z);
+    }
 
     
     
