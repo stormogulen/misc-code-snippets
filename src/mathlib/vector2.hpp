@@ -10,11 +10,7 @@
 
 #include "math_aux.hpp"
 #include "common/visibility.hpp"
-
-
-//#define API_ENTRY
-#define INLINE inline
-#define EXTENSION __extension__
+#include "common/defs.hpp"
 
 template <typename T>
 struct API_ENTRY Vector2

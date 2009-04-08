@@ -10,6 +10,7 @@
 
 #include "math_aux.hpp"
 #include "common/visibility.hpp"
+#include "common/defs.hpp"
 
 template <typename T>
 struct API_ENTRY Vector3
@@ -63,6 +64,9 @@ struct API_ENTRY Vector3
         y = scalar;
         z = scalar;
     }
+
+    //! Copy elements from a 3-D point into a 3-D vector.
+    //explicit Vector3(const Point3& point);
 
     //! Subscripting operator to set or get an element.
     INLINE T& operator[](unsigned int idx)       { return m[idx]; }
@@ -214,10 +218,6 @@ struct API_ENTRY Vector3
                           z*other.x - x*other.z,
                           x*other.y - y*other.x);
     }
-    
-
-    
-    
 };
 
 //
