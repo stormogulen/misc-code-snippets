@@ -11,6 +11,7 @@
 #include "math_aux.hpp"
 #include "common/visibility.hpp"
 #include "common/defs.hpp"
+#include "common/assert.hpp"
 
 template <typename T>
 struct API_ENTRY Vector3
