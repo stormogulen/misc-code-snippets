@@ -127,9 +127,129 @@ struct API_ENTRY Vector4
         z = tz;
         w = tw;
     }
+
+    //! 
+    void clean()
+    {
+        if (mathaux::is_zero(x))
+            x = 0;
+
+        if (mathaux::is_zero(y))
+            y = 0;
+
+        if (mathaux::is_zero(z))
+            z = 0;
+
+        if (mathaux::is_zero(w))
+            w = 0;
+    }
+
+    //! 
+    INLINE void zero()
+    {
+        x = y = z = w = 0;
+    }
+
+    //! Normalize 4-D vector.
+    void normalize()
+    {
+        T length_sq = x*x + y*y + z*z + w*w;
+
+        if (mathaux::is_zero(length_sq))
+            zero();
+        else
+        {
+            T factor = mathaux::inv_sqrt(length_sq);
+            x *= factor;
+            y *= factor;
+            z *= factor;
+            w *= factor;
+        }
+    }
+
+    //! Addition, add vector to self.
+    Vector4<T> operator+(const Vector4<T>& rhs) const
+    {
+        return Vector4<T>(x+other.x,
+                          y+other.y,
+                          z+other.z,
+                          w+other.w);
+    }
+
+    //! 
+    Vector4<T>& operator+=(const Vector4<T>& rhs)
+    {
+        x += other.x;
+        y += other.y;
+        z += other.z;
+        w += other.w;
+
+        return *this;
+    }
+
+    //! Subtraction, subtract vector from self.
+    Vector4<T> operator-(const Vector4<T>& rhs) const
+    {
+        return Vector4<T>(x-other.x,
+                          y-other.y,
+                          z-other.z,
+                          w-other.w);
+    }
+
+    //!
+    Vector4<T>& operator-=(const Vector4<T>& rhs)
+    {
+        x -= other.x;
+        y -= other.y;
+        z -= other.z;
+        w -= other.w;
+
+        return *this;
+    }
+
+    //! Scalar multiplication.
+    Vector4<T> operator*(T scalar)
+    {
+        return Vector4<T>(scalar*x,
+                          scalar*y,
+                          scalar*z,
+                          scalar*w);
+    }
+
+    //!
+    Vector4<T>& operator*=(T scalar)
+    {
+    }
+
+    //!
+    Vector4<T> operator/(T scalar)
+    {
+    }
+
+    //!
+    Vector4<T>& operator/=(T scalar)
+    {
+    }
+
+    //!
+    T dot(const Vector4<T>& other) const
+    {
+    }
     
 
 };
+
+//!
+template <typename T>
+Vector4<T> operator*(T scalar, const Vector4<T>& other)
+{
+}
+
+//!
+template <typename T>
+T dot(const Vector4<T>& v1, const Vector4<T>& v2)
+{
+}
 
 #endif // !__MATHLIB_VECTOR4_HPP_INCLUDED__
 
