@@ -219,21 +219,41 @@ struct API_ENTRY Vector4
     //!
     Vector4<T>& operator*=(T scalar)
     {
+        x *= scalar;
+        y *= scalar;
+        z *= scalar;
+        w *= scalar;
+
+        return *this;
     }
 
     //!
     Vector4<T> operator/(T scalar)
     {
+        return Vector4<T>(x/scalar,
+                          y/scalar,
+                          z/scalar,
+                          w/scalar);
     }
 
     //!
     Vector4<T>& operator/=(T scalar)
     {
+        x /= scalar;
+        y /= scalar;
+        z /= scalar;
+        w /= scalar;
+
+        return *this;
     }
 
     //!
     T dot(const Vector4<T>& other) const
     {
+        return (x*other.x +
+                y*other.y +
+                z*other.z +
+                w*other.w);
     }
     
 
@@ -249,6 +269,10 @@ Vector4<T> operator*(T scalar, const Vector4<T>& other)
 template <typename T>
 T dot(const Vector4<T>& v1, const Vector4<T>& v2)
 {
+    return (v1.x * v2.x +
+            v1.y * v2.y +
+            v1.z * v2.z +
+            v1.w * v2.w);
 }
 
 #endif // !__MATHLIB_VECTOR4_HPP_INCLUDED__
