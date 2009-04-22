@@ -64,10 +64,10 @@ struct API_ENTRY Vector4
         return *this;
     }
 
-    //!
+    //! Subscripting operator to set or get an element.
     INLINE T& operator[](unsigned int idx)       { return m[idx]; }
 
-    //!
+    //! Subscripting operator to get an element.
     INLINE T  operator[](unsigned int idx) const { return m[idx]; }
 
     //! Vector length.
@@ -128,7 +128,7 @@ struct API_ENTRY Vector4
         w = tw;
     }
 
-    //! 
+    //! Set elements close to zero equal to zero.
     void clean()
     {
         if (mathaux::is_zero(x))
@@ -144,7 +144,7 @@ struct API_ENTRY Vector4
             w = 0;
     }
 
-    //! 
+    //! Set all elements to zero.
     INLINE void zero()
     {
         x = y = z = w = 0;
@@ -176,7 +176,7 @@ struct API_ENTRY Vector4
                           w+other.w);
     }
 
-    //! 
+    //! Add vector to self.
     Vector4<T>& operator+=(const Vector4<T>& rhs)
     {
         x += other.x;
@@ -187,7 +187,7 @@ struct API_ENTRY Vector4
         return *this;
     }
 
-    //! Subtraction, subtract vector from self.
+    //! Subtraction.
     Vector4<T> operator-(const Vector4<T>& rhs) const
     {
         return Vector4<T>(x-other.x,
@@ -196,7 +196,7 @@ struct API_ENTRY Vector4
                           w-other.w);
     }
 
-    //!
+    //! Subtraction.
     Vector4<T>& operator-=(const Vector4<T>& rhs)
     {
         x -= other.x;
@@ -216,7 +216,7 @@ struct API_ENTRY Vector4
                           scalar*w);
     }
 
-    //!
+    //! Scalar multiplication, compound assignment and multiplication.
     Vector4<T>& operator*=(T scalar)
     {
         x *= scalar;
@@ -227,7 +227,7 @@ struct API_ENTRY Vector4
         return *this;
     }
 
-    //!
+    //! Scalar division, divide a 4-D vector by a scalar.
     Vector4<T> operator/(T scalar)
     {
         return Vector4<T>(x/scalar,
@@ -236,7 +236,7 @@ struct API_ENTRY Vector4
                           w/scalar);
     }
 
-    //!
+    //! Scalar division, compound assignment and division by scalar.
     Vector4<T>& operator/=(T scalar)
     {
         x /= scalar;
@@ -247,7 +247,7 @@ struct API_ENTRY Vector4
         return *this;
     }
 
-    //!
+    //! Dot product.
     T dot(const Vector4<T>& other) const
     {
         return (x*other.x +
@@ -259,13 +259,17 @@ struct API_ENTRY Vector4
 
 };
 
-//!
+//! Scalar multiplication.
 template <typename T>
 Vector4<T> operator*(T scalar, const Vector4<T>& other)
 {
+    return Vector4<T>(scalar * other.x,
+                      scalar * other.y,
+                      scalar * other.z,
+                      scalar * other.w);
 }
 
-//!
+//! Dot product.
 template <typename T>
 T dot(const Vector4<T>& v1, const Vector4<T>& v2)
 {
