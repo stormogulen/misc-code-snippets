@@ -63,7 +63,7 @@
 //! Additional GCC attributes
 #ifdef __GNUC__
 #  define ALIGN_N(x)        __attribute__ ((aligned(x)))
-#  define ALING             __attribute__ ((aligned))
+#  define ALIGN             __attribute__ ((aligned))
 #  define VECTOR_SIZE(x)    __attribute__ ((vector_size(x)) 
 #  define TRANSPARENT_UNION __attribute__ ((__transparent_union__)) 
 #  define SECTION(x)        __attribute__ ((x)) 
@@ -182,7 +182,7 @@
 #ifdef __GNUC__
 #  define EXTENSION __extension__
 #else
-#  defein EXTENSION
+#  define EXTENSION
 #endif
 
 #endif // !__COMMON_DEFS_HPP_INCLUDED__

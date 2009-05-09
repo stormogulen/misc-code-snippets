@@ -11,6 +11,8 @@
 #include "vector2.hpp"
 #include "vector3.hpp"
 #include "vector4.hpp"
+#include "matrix3x3.hpp"
+#include "quaternion.hpp"
 
 //! 2-D vector of floats.
 typedef Vector2<float>   vec2f_t;
@@ -38,6 +40,24 @@ typedef Vector4<double>  vec4d_t;
 
 //! 4-D vector of integers.
 typedef Vector4<int>     vec4i_t;
+
+//! Quaternion of floats.
+typedef Quaternion<float> quaternionf_t;
+
+//! Quaternion of doubles.
+typedef Quaternion<double> quaterniond_t;
+
+//! Quaternion of intergers.
+typedef Quaternion<int> quaternioni_t;
+
+//! Matrix 3x3 of floats.
+typedef Matrix3x3<float> mat3f_t;
+
+//! Matrix 3x3 of doubles.
+typedef Matrix3x3<double> mat3d_t;
+
+//! Matrix 3x3 of integers.
+typedef Matrix3x3<int> mat3i_t;
 
 #endif // !__MATHLIB_GEOMETRY_HPP_INCLUDED__
 

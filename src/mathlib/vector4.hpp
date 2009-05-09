@@ -168,7 +168,7 @@ struct API_ENTRY Vector4
     }
 
     //! Addition, add vector to self.
-    Vector4<T> operator+(const Vector4<T>& rhs) const
+    Vector4<T> operator+(const Vector4<T>& other) const
     {
         return Vector4<T>(x+other.x,
                           y+other.y,
@@ -177,7 +177,7 @@ struct API_ENTRY Vector4
     }
 
     //! Add vector to self.
-    Vector4<T>& operator+=(const Vector4<T>& rhs)
+    Vector4<T>& operator+=(const Vector4<T>& other)
     {
         x += other.x;
         y += other.y;
@@ -188,7 +188,7 @@ struct API_ENTRY Vector4
     }
 
     //! Subtraction.
-    Vector4<T> operator-(const Vector4<T>& rhs) const
+    Vector4<T> operator-(const Vector4<T>& other) const
     {
         return Vector4<T>(x-other.x,
                           y-other.y,
@@ -197,7 +197,7 @@ struct API_ENTRY Vector4
     }
 
     //! Subtraction.
-    Vector4<T>& operator-=(const Vector4<T>& rhs)
+    Vector4<T>& operator-=(const Vector4<T>& other)
     {
         x -= other.x;
         y -= other.y;

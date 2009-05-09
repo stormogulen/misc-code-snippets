@@ -16,6 +16,25 @@
 #  define AC_ASSERT(x) assert(x)
 #endif
 
+#if DO_AC_ASSERT
+//! Set ptr to invalid pointer value.
+template <typename T>
+INLINE void poison_pointer(T* &ptr)
+{
+    ptr = reinterpret_cast<T*>(-1);
+}
+#else
+template <typename T>
+INLINE void poison_pointer(T*)
+{
+    /* Do nothing */
+}
+#endif // DO_AC_ASSERT
+
+//! Report a runtime warning.
+void runtime_warning(const char* format, ...);
+
+
 #endif // !__COMMON_ASSERT_HPP_INCLUDED__
 
 /* End of File */
