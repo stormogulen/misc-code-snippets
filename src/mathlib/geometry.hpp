@@ -42,13 +42,13 @@ typedef Vector4<double>  vec4d_t;
 typedef Vector4<int>     vec4i_t;
 
 //! Quaternion of floats.
-typedef Quaternion<float> quaternionf_t;
+typedef Quaternion<float> quatf_t;
 
 //! Quaternion of doubles.
-typedef Quaternion<double> quaterniond_t;
+typedef Quaternion<double> quatd_t;
 
 //! Quaternion of intergers.
-typedef Quaternion<int> quaternioni_t;
+typedef Quaternion<int> quati_t;
 
 //! Matrix 3x3 of floats.
 typedef Matrix3x3<float> mat3f_t;
