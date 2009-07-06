@@ -143,7 +143,7 @@ inline unsigned int upper_power_of_two(const unsigned int n)
     while (i < n)
         i += i;
 
-    return i;
+s    return i;
 }
 
 //! Lower power of two.
@@ -172,6 +172,21 @@ inline float to_degree(float radian)
 inline bool equal(const float f0, const float f1, const float epsilon=EPSILON)
 {
     return fabs(f0-f1) <= epsilon;
+}
+
+//!
+static float randf(float min, float max)
+{
+    return min + (max-min) * (rand() * (1.0f / RAND_MAX));
+}
+
+//!
+static float ensure_bounds(float value, float min, float max)
+{
+    value = (value >= min) ? value : min;
+    value = (value <= max) ? value : max;
+
+    return value;
 }
 
 } // mathaux

@@ -58,7 +58,7 @@ struct API_ENTRY Vector3
         return *this;
     }
 
-    //! Set all elements of a 2-D vector to the same scalar value.
+    //! Set all elements of a 3-D vector to the same scalar value.
     explicit Vector3(T scalar)
     {
         x = scalar;

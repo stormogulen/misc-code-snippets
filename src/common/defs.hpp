@@ -155,7 +155,7 @@
 //! Make __restrict__ useable in C++.
 /**
  * Because you cannot compile C++ by specifying the -std=c99 language
- * flag, restrict is not a keyword in C++.
+ * flag (restrict is not a keyword in C++).
  */
 #ifdef __GNUC__
 #  ifdef __cplusplus
@@ -172,7 +172,7 @@
 
 //! GDB hack.
 /**
- * an empty inline assembly statement you can rely on the side-effect
+ * An empty inline assembly statement you can rely on the side-effect
  * of splitting the basic block witout actually adding any
  * instructions.
  */
