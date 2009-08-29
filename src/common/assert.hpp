@@ -9,6 +9,8 @@
 #define __COMMON_ASSERT_HPP_INCLUDED__
 
 #include <cassert>
+#include <cstdio>
+#include <string>
 
 #if !defined(DEBUG)
 #  define AC_ASSERT(x) { static_cast<void>(sizeof(x)); } while(0)
@@ -44,7 +46,7 @@ std::string demangle(const char* name)
     std::string in;
     if (end == 0)
         in.assign(start);
-    else in.assing(start, end);
+    else in.assign(start, end);
 
     size_t len;
     int status;
@@ -70,7 +72,7 @@ void assert_fail(const char* expr, int line, const char* file, const char* funct
             "expression: %s \n"
             "stack:\n", file, line, function, expr);
 
-    raise(SIGINT);
+    //raise(SIGINT);
     abort();
 }
 

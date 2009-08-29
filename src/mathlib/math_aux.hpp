@@ -143,7 +143,7 @@ inline unsigned int upper_power_of_two(const unsigned int n)
     while (i < n)
         i += i;
 
-s    return i;
+    return i;
 }
 
 //! Lower power of two.
@@ -174,12 +174,15 @@ inline bool equal(const float f0, const float f1, const float epsilon=EPSILON)
     return fabs(f0-f1) <= epsilon;
 }
 
+/*
+#include <cmath>
+#include <cstdlib>
 //!
 static float randf(float min, float max)
 {
     return min + (max-min) * (rand() * (1.0f / RAND_MAX));
 }
-
+*/
 //!
 static float ensure_bounds(float value, float min, float max)
 {
@@ -188,6 +191,33 @@ static float ensure_bounds(float value, float min, float max)
 
     return value;
 }
+
+#define CLAMP(a) \
+    if (a > 1.0) a = 1.0; \
+    if (a < 0.0) a = 0.0;
+    
+
+inline float clamp(float x, float a, float b)
+{
+    return x < a ? a : (x > b ? b : x);
+}
+
+//! Round to integer.
+#define INT_ROUND(x) floor((x)+0.5)
+
+//! Round number n to d decimal points. 
+#define FLOAT_ROUND(n,d) (floor((n)/pow(.1,(d))+.5)*pow(.1,(d))) 
+
+
+#define F_COS_1_16     cos(1.0*PI/16.0)
+#define F_COS_2_16     cos(2.0*PI/16.0)
+//...
+
+inline clamp_byte(int x)
+{
+    return (x < 0) ? 0 : ( (x > 255) ? 255 : x );
+}
+
 
 } // mathaux
 
