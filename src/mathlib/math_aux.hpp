@@ -213,7 +213,7 @@ inline float clamp(float x, float a, float b)
 #define F_COS_2_16     cos(2.0*PI/16.0)
 //...
 
-inline clamp_byte(int x)
+inline int clamp_byte(int x)
 {
     return (x < 0) ? 0 : ( (x > 255) ? 255 : x );
 }
